@@ -1,0 +1,64 @@
+{
+  "expo": {
+    "name": "BigBatteryWidget",
+    "slug": "bigbatterywidget",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.floribattery.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.floribattery.app",
+      "permissions": [
+        "REQUEST_IGNORE_BATTERY_OPTIMIZATIONS",
+        "RECEIVE_BOOT_COMPLETED",
+        "BATTERY_STATS"
+      ],
+      "intentFilters": [
+        {
+          "action": "android.intent.action.MAIN",
+          "category": ["android.intent.category.LAUNCHER"]
+        }
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-dev-client",
+      [
+        "react-native-android-widget",
+        {
+          "fonts": [],
+          "widgets": [
+            {
+              "name": "BatteryWidget",
+              "label": "Battery Status",
+              "minWidth": "250dp",
+              "minHeight": "40dp",
+              "description": "Shows battery percentage",
+              "previewImage": "./assets/widget-preview.png",
+              "updatePeriodMillis": 900000,
+              "resizeMode": "horizontal",
+              "widgetFeatures": "reconfigurable",
+              "targetCellWidth": 4,
+              "targetCellHeight": 1
+            }
+          ]
+        }
+      ]
+    ]
+  }
+}
