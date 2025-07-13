@@ -73,19 +73,18 @@ export default function App() {
       }
     }
     
-    // Request widget update
-    try {
-      await requestWidgetUpdate({
-        widgetName: 'BatteryWidget',
-        renderWidget: () => <BasicWidget batteryLevel={percentage} />,
-        widgetNotFound: () => {
-          console.log('No BatteryWidget found on home screen');
-        },
-      });
-      console.log('Widget update requested with battery level:', percentage);
-    } catch (error) {
+    // Force immediate widget update - don't wait for the promise
+    requestWidgetUpdate({
+      widgetName: 'BatteryWidget',
+      renderWidget: () => <BasicWidget batteryLevel={percentage} />,
+      widgetNotFound: () => {
+        console.log('No BatteryWidget found on home screen');
+      },
+    }).then(() => {
+      console.log('Widget update completed with battery level:', percentage);
+    }).catch(error => {
       console.error('Error updating widget:', error);
-    }
+    });
   };
 
   const checkBatteryOptimization = async () => {

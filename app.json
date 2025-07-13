@@ -29,7 +29,9 @@
       "intentFilters": [
         {
           "action": "android.intent.action.MAIN",
-          "category": ["android.intent.category.LAUNCHER"]
+          "category": [
+            "android.intent.category.LAUNCHER"
+          ]
         }
       ]
     },
@@ -59,6 +61,11 @@
           ]
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "ced461a4-0a99-4991-aa63-3c7f9ec97640"
+      }
+    }
   }
 }

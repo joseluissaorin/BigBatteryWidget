@@ -7,7 +7,11 @@ const SharedPreferences = NativeModules.SharedPreferences;
 
 // Map widget names to their components
 const nameToWidget = {
-  BatteryWidget: 'BatteryWidget',
+  BatteryWidget: 'BasicWidget',
+  BatteryWidget1x1Percentage: 'Widget1x1Percentage',
+  BatteryWidget1x1Battery: 'Widget1x1Battery',
+  BatteryWidget2x1Combo: 'Widget2x1Combo',
+  BatteryWidget2x1Battery: 'Widget2x1Battery',
 };
 
 export async function widgetTaskHandler(props) {
@@ -35,9 +39,27 @@ export async function widgetTaskHandler(props) {
     return null;
   }
 
-  // Return the actual widget component
-  const Widget = require('./components/BasicWidget').default;
-  console.log('[WIDGET HANDLER] Using BasicWidget');
+  // Return the actual widget component based on widget name
+  let Widget;
+  switch (widgetComponentName) {
+    case 'Widget1x1Percentage':
+      Widget = require('./components/Widget1x1Percentage').default;
+      break;
+    case 'Widget1x1Battery':
+      Widget = require('./components/Widget1x1Battery').default;
+      break;
+    case 'Widget2x1Combo':
+      Widget = require('./components/Widget2x1Combo').default;
+      break;
+    case 'Widget2x1Battery':
+      Widget = require('./components/Widget2x1Battery').default;
+      break;
+    case 'BasicWidget':
+    default:
+      Widget = require('./components/BasicWidget').default;
+      break;
+  }
+  console.log('[WIDGET HANDLER] Using', widgetComponentName);
 
   try {
     // Get battery level from native SharedPreferences (updated by BatteryChangeReceiver)
